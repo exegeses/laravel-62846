@@ -38,9 +38,9 @@
 
 1. un terminal
 - [ ] la del sistema operativo
+- [ ] Git Bash <https://git-scm.com/>
 - [ ] cmDer <https://cmder.net/>
 - [ ] Cygwin <https://www.cygwin.com/>
-- [ ] Git Bash <https://git-scm.com/>
 
 2. PHP 8.1^ <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/laravel/laravel?style=flat-square" valign="middle">
  
@@ -122,3 +122,11 @@ LaraJobs <https://larajobs.com/>
 
 > Ahora ya tenemos nuestro proyecto base listo
 > enjoy coding!
+
+<label for="yes">
+  <input type="radio" id="yes" name="subscribe" value="yup" checked />
+  Yup
+</label><label for="nop">
+  <input type="radio" id="mop" name="subscribe" value="nop" />
+  Nop
+</label>
