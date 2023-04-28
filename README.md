@@ -12,8 +12,9 @@
 2. Requisitos <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/laravel/laravel?style=flat-square" valign="middle"> <img alt="Packagist Version" src="https://img.shields.io/packagist/v/laravel/laravel" valign="middle">
 3. Recursos
 4. Instalación
-5. Iniciar el server
-6. Actualizar desde un proyecto existente
+5. Chaquear versión de Laravel 
+6. Iniciar el server
+7. Actualizar desde un proyecto existente
 
 ## Definición
 > Laravel es uno de los frameworks de código abierto más fáciles de asimilar para PHP.
@@ -75,6 +76,13 @@ LaraJobs <https://larajobs.com/>
 > Una vez finalizada la instalación instalado, nos movemos al directorio del proyecto
 
 `cd proyecto`
+
+## Chequear versión de Laravel  
+    php artisan -V (tradicional)  
+    php artisan about  
+
+
+## Iniciar el server 
 
 > Y ya podemos arrancar el server:
 
