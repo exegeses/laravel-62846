@@ -42,12 +42,14 @@
 - [ ] Cygwin <https://www.cygwin.com/>
 - [ ] Git Bash <https://git-scm.com/>
 
-2. Composer
+2. PHP 8.1^ <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/laravel/laravel?style=flat-square" valign="middle">
+ 
+3. Composer
    Composer es un administrador de dependencias en PHP.  
    <https://getcomposer.org/>  
    <https://getcomposer.org/Composer-Setup.exe>
 
-## Recursos
+## Recursos (enlaces)
 
 Manual Oficial de Laravel <https://laravel.com/>  
 Laravel News <https://laravel-news.com/>  
@@ -55,6 +57,7 @@ Laracasts <https://laracasts.com/>
 LaraJobs <https://larajobs.com/>
 
 ## Instalación
+
 > Usando composer vamos a movernos al directorio de trabajo    
 > En ese directorio vamos a crear un proyecto (carpeta con toda la magia de laravel) .  
 > Con el comando "cd" nos movemos a nuestro directorio de trabajo    
@@ -62,8 +65,8 @@ LaraJobs <https://larajobs.com/>
 
 `composer create-project laravel/laravel nombre "version"`
 
-> Ejemplo para instalar laravel 6x  
-`composer create-project laravel/laravel proyecto "6.*"`
+> Ejemplo para instalar laravel 8x  
+`composer create-project laravel/laravel proyecto "8.*"`
 
 > Ejemplo para instalar laravel (versión más actual según tu versión de PHP - no necesita especificar versión)    
 `composer create-project laravel/laravel proyecto`
@@ -115,7 +118,7 @@ LaraJobs <https://larajobs.com/>
 > Ahora si, el último paso es genear la key del proyecto.  
 > Esto se logra con el comando
 
-    php artisan key:generate
+    php artisan key:generate  
 
 > Ahora ya tenemos nuestro proyecto base listo
 > enjoy coding!
