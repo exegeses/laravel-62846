@@ -3,7 +3,7 @@
 # Curso de Laravel código 62846
 <img src="https://img.shields.io/badge/Laravel-F55247?style=for-the-badge&logo=laravel&logoColor=white"><img src="https://img.shields.io/badge/PHP-8993BF?style=for-the-badge&logo=php&logoColor=white"><img src="https://img.shields.io/badge/MySQL-4D9EB1?style=for-the-badge&logo=mysql&logoColor=white">
 > Curso de Laravel |  
-> Sábados 19hs a 22hs (Arg) |  
+> Viernes 19hs a 22hs (Arg) |  
 > 10 clases desde 28/04/2023 hasta 07/07/2023 |  
 > Código: 62846 |  
 > sensei: Marcos Pinardi |
