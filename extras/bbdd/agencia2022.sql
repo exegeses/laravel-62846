@@ -1,9 +1,9 @@
 
 --
--- Base de datos: `agencia2022`
+-- Base de datos: `agencia`
 --
-CREATE SCHEMA `agencia2022` DEFAULT CHARACTER SET utf8mb4;
-USE agencia2022;
+CREATE SCHEMA `agencia` DEFAULT CHARACTER SET utf8mb4;
+USE agencia;
 -- --------------------------------------------------------
 
 --
