@@ -84,3 +84,16 @@ Route::post('/region/store', function ()
                 ]);
     }
 });
+Route::get('/region/edit/{id}', function ( $id )
+{
+    //obtenemos datos de la región a modificar
+    $region = DB::select('SELECT idRegion, regNombre
+                            FROM regiones
+                            WHERE idRegion = :id',
+                            [ $id ]
+              );
+    //retornamos vista del form
+    return view('regionEdit', [ 'region'=>$region ]);
+});
+
+
