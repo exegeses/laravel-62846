@@ -181,3 +181,18 @@ Route::post('/region/destroy', function ()
             ]);
     }
 });
+
+/*##################
+ * CRUD de destinos
+ * */
+Route::get('/destinos', function ()
+{
+    //obtenemos listado de destinos
+    /*$destinos = DB::select("SELECT *, regNombre FROM destinos as d
+                              JOIN regiones as r
+                                ON d.idRegion = r.idRegion");*/
+    $destinos = DB::table('destinos as d')
+                        ->join('regiones as r', 'd.idRegion', '=', 'r.idRegion')
+                        ->get();
+    return view('destinos', [ 'destinos'=>$destinos ]);
+});
