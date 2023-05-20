@@ -237,3 +237,9 @@ Route::post('/destino/store', function ()
                 ]);
     }
 });
+Route::get('/destino/edit/{id}', function ($id)
+{
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
+    return view('destinoEdit', [ 'regiones'=>$regiones ]);
+});
