@@ -196,3 +196,44 @@ Route::get('/destinos', function ()
                         ->get();
     return view('destinos', [ 'destinos'=>$destinos ]);
 });
+
+Route::get('/destino/create', function ()
+{
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
+    return view('destinoCreate', [ 'regiones'=>$regiones ] );
+});
+
+Route::post('/destino/store', function ()
+{
+    //capturamos datos enviados por el form
+    $destNombre = request('destNombre');
+    $idRegion = request('idRegion');
+    $destPrecio = request('destPrecio');
+    $destAsientos = request('destAsientos');
+    $destDisponibles = request('destDisponibles');
+    try {
+        DB::table('destinos')
+                ->insert(
+                    [
+                        'destNombre'=>$destNombre,
+                        'idRegion'=>$idRegion,
+                        'destPrecio'=>$destPrecio,
+                        'destAsientos'=>$destAsientos,
+                        'destDisponibles'=>$destDisponibles
+                    ]
+                );
+        return redirect('/destinos')
+            ->with([
+                'mensaje'=>'Destino: '.$destNombre.' agregado corectamente',
+                'css'=>'success'
+            ]);
+    }
+    catch ( Throwable $th ){
+        return redirect('/destinos')
+                ->with([
+                    'mensaje'=>'No se pudo agregar el destino: '.$destNombre,
+                    'css'=>'danger'
+                ]);
+    }
+});
