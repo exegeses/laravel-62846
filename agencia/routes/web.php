@@ -240,7 +240,52 @@ Route::post('/destino/store', function ()
 });
 Route::get('/destino/edit/{id}', function ($id)
 {
+    //obtenemos destino por su id
+    $destino = DB::table('destinos')->where('idDestino', $id)->first();
     //obtenemos listado de regiones
     $regiones = DB::table('regiones')->get();
-    return view('destinoEdit', [ 'regiones'=>$regiones ]);
+    return view('destinoEdit',
+            [
+                'destino'=>$destino,
+                'regiones'=>$regiones
+            ]);
+});
+Route::post('/destino/update', function ()
+{
+    $idDestino=request('idDestino');
+    $destNombre=request('destNombre');
+    $idRegion=request('idRegion');
+    $destPrecio=request('destPrecio');
+    $destAsientos=request('destAsientos');
+    $destDisponibles=request('destDisponibles');
+    try {
+        DB::table('destinos')
+            ->where('idDestino', $idDestino)
+            ->update(
+                [
+                    'destNombre'=>$destNombre,
+                    'idRegion'=>$idRegion,
+                    'destPrecio'=>$destPrecio,
+                    'destAsientos'=>$destAsientos,
+                    'destDisponibles'=>$destDisponibles
+                ]
+            );
+
+        return redirect('/destinos')
+            ->with([
+                'mensaje'=>'Destino: '.$destNombre.' modificado corectamente',
+                'css'=>'success'
+            ]);
+    }
+    catch ( Throwable $th ){
+        return redirect('/destinos')
+            ->with([
+                'mensaje'=>'No se pudo modific el destino: '.$destNombre,
+                'css'=>'danger'
+            ]);
+    }
+});
+Route::get('/destino/delete/{id}', function ($id)
+{
+
 });

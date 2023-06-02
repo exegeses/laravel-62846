@@ -11,6 +11,7 @@
                 <label for="destNombre">Nombre del Destino:</label>
                 <input type="text" name="destNombre"
                        id="destNombre" class="form-control"
+                       value="{{ $destino->destNombre }}"
                        required>
             </div>
 
@@ -20,7 +21,7 @@
                         class="form-control" required>
                     <option value="">Seleccione una región</option>
             @foreach( $regiones as $region )
-                    <option value="{{ $region->idRegion }}">{{ $region->regNombre }}</option>
+                    <option @selected( $region->idRegion == $destino->idRegion ) value="{{ $region->idRegion }}">{{ $region->regNombre }}</option>
             @endforeach
                 </select>
             </div>
@@ -31,6 +32,7 @@
                         <div class="input-group-text">$</div>
                     </div>
                     <input type="number" name="destPrecio"
+                           value="{{ $destino->destPrecio }}"
                            class="form-control" placeholder="Ingrese el precio" required>
                 </div>
             </div>
@@ -41,6 +43,7 @@
                         <div class="input-group-text">#</div>
                     </div>
                     <input type="number" name="destAsientos"
+                           value="{{ $destino->destAsientos }}"
                            class="form-control" placeholder="Ingrese cantidad de Asientos Totales" required>
                 </div>
             </div>
@@ -51,9 +54,12 @@
                         <div class="input-group-text">#</div>
                     </div>
                     <input type="number" name="destDisponibles"
+                           value="{{ $destino->destDisponibles }}"
                            class="form-control" placeholder="Ingrese cantidad de Asientos Disponibles" required>
                 </div>
             </div>
+            <input type="hidden" name="idDestino"
+                   value="{{ $destino->idDestino }}">
 
 
             <button class="btn btn-dark">Modificar destino</button>
