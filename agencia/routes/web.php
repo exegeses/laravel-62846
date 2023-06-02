@@ -43,8 +43,9 @@ Route::get('/datos', function ()
 Route::get('/regiones', function ()
 {
     //obtenemos listado de regiones
-    $regiones = DB::select('SELECT idRegion, regNombre
-                               FROM regiones');
+   /* $regiones = DB::select('SELECT idRegion, regNombre
+                               FROM regiones'); */
+    $regiones = DB::table('regiones')->paginate(6);
     return view('regiones', [ 'regiones'=>$regiones ]);
 });
 Route::get('/region/create', function ()
@@ -193,7 +194,7 @@ Route::get('/destinos', function ()
                                 ON d.idRegion = r.idRegion");*/
     $destinos = DB::table('destinos as d')
                         ->join('regiones as r', 'd.idRegion', '=', 'r.idRegion')
-                        ->get();
+                        ->paginate(8);
     return view('destinos', [ 'destinos'=>$destinos ]);
 });
 

@@ -44,4 +44,7 @@
     @endforeach
     </ul>
 
+    {{ $regiones->links() }}
+
+
 @endsection

@@ -50,4 +50,6 @@
     @endforeach
     </ul>
 
+    {{ $destinos->links() }}
+
 @endsection
