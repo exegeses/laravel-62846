@@ -287,5 +287,34 @@ Route::post('/destino/update', function ()
 });
 Route::get('/destino/delete/{id}', function ($id)
 {
-
+    //obtenemos los datos del destino
+    $destino = DB::table('destinos as d')
+                ->join('regiones as r', 'd.idRegion', '=', 'r.idRegion')
+                ->where('idDestino', $id)
+                ->first();
+    return view('destinoDelete',
+                [ 'destino'=>$destino ]
+    );
+});
+Route::post('/destino/destroy', function ()
+{
+    $idDestino = request('idDestino');
+    $destNombre = request('destNombre');
+    try{
+        DB::table('destinos')
+            ->where('idDestino', $idDestino)
+            ->delete();
+        return redirect('/destinos')
+            ->with([
+                'mensaje'=>'Destino: '.$destNombre.' eliminado corectamente',
+                'css'=>'success'
+            ]);
+    }
+    catch ( Throwable $th ){
+        return redirect('/destinos')
+            ->with([
+                'mensaje'=>'No se pudo eliminar el destino: '.$destNombre,
+                'css'=>'danger'
+            ]);
+    }
 });
