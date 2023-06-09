@@ -22,7 +22,24 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcaCreate');
+    }
+
+    private function validarForm( Request $request )
+    {
+        $request->validate(
+                /*
+                 * [ 'campo'=>'reglas' ],
+                 * [ 'campo.regla'=>'mensaje' ]
+                 */
+                [ 'mkNombre'=>'required|unique:marcas,mkNombre|min:2|max:30' ],
+                [
+                    'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio',
+                    'mkNombre.unique'=>'Ya existe una marca con ese nombre',
+                    'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres',
+                    'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 30 caractéres como máximo'
+                ]
+        );
     }
 
     /**
@@ -30,7 +47,11 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mkNombre = $request->mkNombre;
+        //validación
+        $this->validarForm($request);
+
+        return 'si llega hasta acá, es porque pasó la validación';
     }
 
     /**
@@ -54,7 +75,7 @@ class MarcaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validación
     }
 
     /**
