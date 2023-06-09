@@ -44,4 +44,6 @@
     @endforeach
     </ul>
 
+    {{ $categorias->links() }}
+
 @endsection

@@ -14,7 +14,8 @@ class CategoriaController extends Controller
     {
         //obtenemos el listado de categorias
         //categorias = DB::table('categorias')->get();
-        $categorias = Categoria::all();
+        //$categorias = Categoria::all();
+        $categorias = Categoria::paginate(6);
         return view('categorias',
                 ['categorias'=>$categorias]
         );
