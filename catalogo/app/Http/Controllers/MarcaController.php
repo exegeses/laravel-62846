@@ -50,6 +50,30 @@ class MarcaController extends Controller
         $mkNombre = $request->mkNombre;
         //validación
         $this->validarForm($request);
+        try {
+            //instanciamos
+            $Marca = new Marca;
+            //asignamos atributos
+            $Marca->mkNombre = $mkNombre;
+            //almacenamos en tabla marcas
+            $Marca->save();
+            return redirect('/marcas')
+                    ->with(
+                        [
+                            'mensaje'=>'Marca: '.$mkNombre.' agregada correctamente',
+                            'css'=>'success'
+                        ]
+                    );
+        }
+        catch ( Throwable $th ){
+            return redirect('/marcas')
+                ->with(
+                    [
+                        'mensaje'=>'No se pudo agragar la marca: '.$mkNombre,
+                        'css'=>'danger'
+                    ]
+                );
+        }
 
         return 'si llega hasta acá, es porque pasó la validación';
     }
