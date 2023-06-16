@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Producto extends Model
+{
+    use HasFactory;
+
+    /**
+     * método para queckear si hay productos
+     * relacionado a una marca
+     */
+    static function checkProductoPorMarca( $idMarca )
+    {
+        return Producto::where('idMarca', $idMarca)->count();
+    }
+
+    /* métodos de relación */
+}

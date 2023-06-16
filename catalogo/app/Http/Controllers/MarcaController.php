@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -133,11 +134,52 @@ class MarcaController extends Controller
         }
     }
 
+    public function confirmarBaja( $id )
+    {
+        //obtenemos datos de la marca
+        $Marca = Marca::find( $id );
+
+        if( Producto::checkProductoPorMarca($id) == 0 ){
+            //retornamos vista de confirmación
+            return view('marcaDelete', [ 'Marca'=>$Marca ]);
+        }
+
+        return  redirect('/marcas')
+                    ->with(
+                        [
+                            'mensaje'=>'No se puede eliminar la marca: '.$Marca->mkNombre. ' porque tiene productos relacionados',
+                            'css'=>'danger'
+                        ]
+                    );
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(  )
     {
-        //
+        $mkNombre = request('mkNombre');
+        $idMarca = request('idMarca');
+        try {
+            /* $Marca = Marca::find($idMarca);
+            $Marca->delete(); */
+            Marca::destroy($idMarca);
+            return redirect('/marcas')
+                ->with(
+                    [
+                        'mensaje'=>'Marca: '.$mkNombre.' eliminada correctamente',
+                        'css'=>'success'
+                    ]
+                );
+        }
+        catch ( Throwable $th ){
+            return redirect('/marcas')
+                ->with(
+                    [
+                        'mensaje'=>'No se pudo eliminar la marca: '.$mkNombre,
+                        'css'=>'danger'
+                    ]
+                );
+        }
     }
 }
