@@ -1,9 +1,9 @@
 @extends('layouts.plantilla')
 @section('contenido')
 
-    <h1>Baja de una marca</h1>
+    <h1 class="mb-4">Baja de una marca</h1>
 
-    <div class="alert alert-danger col-6 mx-auto p-4">
+    <div class="alert shadow text-danger col-6 mx-auto p-4">
 
         Se eliminará la marca:
         <span class="lead">

@@ -38,6 +38,10 @@ main{
     margin-bottom: 100px;
 }
 
+    h1{
+        margin-bottom: 32px;
+    }
+
     /* listas */
     .alert ul li{
         list-style-type: none;
@@ -85,6 +89,11 @@ main{
         color: #6cad47;
         font-size: 1.12em;
         font-weight: 500;
+    }
+
+    textarea{
+        height: 112px;
+        resize: none;
     }
 
 footer{
