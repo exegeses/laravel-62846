@@ -122,8 +122,6 @@ class ProductoController extends Controller
                         ]
                     );
         }
-        //si llega hasta acá, es porque pasó la validación
-        return 'pasó la validación';
     }
 
     /**
