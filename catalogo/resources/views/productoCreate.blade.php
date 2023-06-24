@@ -20,7 +20,7 @@
                 </div>
                 <input type="number" name="prdPrecio"
                        value="{{ old('prdPrecio') }}"
-                       class="form-control" id="prdPrecio" min="0" step="0.01">
+                       class="form-control" id="prdPrecio"  step="0.01">
             </div>
 
             <div class="form-group mb-4">
@@ -60,5 +60,16 @@
 
         </form>
     </div>
+
+    @if( $errors->any() )
+        <div class="alert bg-light text-danger p-4 col-8 mx-auto shadow">
+            <ul>
+                @foreach( $errors->all() as $error )
+                    <li><i class="bi bi-info-circle"></i>
+                        {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 @endsection

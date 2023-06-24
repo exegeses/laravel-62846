@@ -41,7 +41,7 @@ class ProductoController extends Controller
         );
     }
 
-    private function validarForm( Request $request )
+    private function validarForm( Request $request ) : void
     {
         $request->validate(
                 [
@@ -70,6 +70,22 @@ class ProductoController extends Controller
         );
     }
 
+    private function subirImagen( Request $request ) : string
+    {
+        //si no envían imagen
+        $prdImagen = 'noDisponible.png';
+
+        //si envían imagen
+        if( $request->file('prdImagen') ){
+            $archivo =  $request->file('prdImagen');
+            //renombramos archivo
+            $extension = $archivo->getClientOriginalExtension();
+            $prdImagen = time().'.'.$extension;
+            //movemos el archivo
+            $archivo->move( public_path('imagenes/productos/'), $prdImagen );
+        }
+        return $prdImagen;
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -78,7 +94,34 @@ class ProductoController extends Controller
         $prdNombre = $request->prdNombre;
         //validación
         $this->validarForm($request);
-
+        //subir imagen
+        $prdImagen = $this->subirImagen($request);
+        try {
+            $Producto = new Producto;
+            $Producto->prdNombre = $prdNombre;
+            $Producto->prdPrecio = $request->prdPrecio;
+            $Producto->idMarca = $request->idMarca;
+            $Producto->idCategoria = $request->idCategoria;
+            $Producto->prdDescripcion = $request->prdDescripcion;
+            $Producto->prdImagen = $prdImagen;
+            $Producto->save();
+            return redirect('/productos')
+                ->with(
+                    [
+                        'mensaje'=>'Producto: '.$prdNombre.' agregado correctamente',
+                        'css'=>'success'
+                    ]
+                );
+        }
+        catch( \Throwable $th ){
+            return redirect('/productos')
+                    ->with(
+                        [
+                            'mensaje'=>'No se pudo agregar el producto: '.$prdNombre,
+                            'css'=>'danger'
+                        ]
+                    );
+        }
         //si llega hasta acá, es porque pasó la validación
         return 'pasó la validación';
     }
