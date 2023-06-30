@@ -196,11 +196,39 @@ class ProductoController extends Controller
 
     }
 
+    public function confirmarBaja( $id )
+    {
+        //obtenemos datos de producto
+        $Producto = Producto::with(['getMarca', 'getCategoria'])->find($id);
+        return view('productoDelete', [ 'Producto'=>$Producto ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
+    public function destroy(Request $request)
     {
-        //
+        $prdNombre = $request->prdNmobre;
+        try {
+            Producto::destroy($request->idProducto);
+            //si queremos eliminar el archivo SI NO ES 'noDisponible.png'
+            //unlink(public_path('imagenes/productos/').$request->prdImagen);
+            return redirect('/productos')
+                ->with(
+                    [
+                        'mensaje'=>'Producto: '.$prdNombre.' elimnado correctamente',
+                        'css'=>'success'
+                    ]
+                );
+        }
+        catch( \Throwable $th ) {
+            return redirect('/productos')
+                ->with(
+                    [
+                        'mensaje' => 'No se pudo elimnar el producto: ' . $prdNombre,
+                        'css' => 'danger'
+                    ]
+                );
+        }
     }
 }
