@@ -203,6 +203,14 @@ class ProductoController extends Controller
         return view('productoDelete', [ 'Producto'=>$Producto ]);
     }
 
+    private function borrarImagen($imagen)
+    {
+        //si queremos eliminar el archivo SI NO ES 'noDisponible.png'
+        if( $imagen != 'noDisponible.png' ){
+            unlink(public_path('imagenes/productos/').$imagen);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -211,8 +219,8 @@ class ProductoController extends Controller
         $prdNombre = $request->prdNmobre;
         try {
             Producto::destroy($request->idProducto);
-            //si queremos eliminar el archivo SI NO ES 'noDisponible.png'
-            //unlink(public_path('imagenes/productos/').$request->prdImagen);
+
+            //$this->borrarImagen($request->prdImagen);
             return redirect('/productos')
                 ->with(
                     [
